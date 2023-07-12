@@ -1,0 +1,33 @@
+.wellDone{
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+.questions{
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 30px;
+
+}
+.answers{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  justify-content: center;
+  margin: auto;
+  button{
+    font-size: 28px;
+    background-color: white;
+    color: #88249C;
+    border: #80AC87 1px solid;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+  }
+}

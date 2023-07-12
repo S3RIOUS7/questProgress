@@ -1,0 +1,49 @@
+.progress-container{
+  width: 100%; /* Полная ширина */
+  background-color: red; /* Серый фон */
+  border-radius: 15px;
+  
+}
+.circle{
+  width: 30px;
+  background-color: green;
+  height: 30px;
+  border-radius: 50px;
+  text-align: center;
+  color: white;
+  font-size: 19px;
+  justify-content: center;
+}
+.filled {
+  background-color: blue; /* Цвет заполненных частей */
+}
+.progressBar {
+  height: 20px;
+  width: 100%;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  
+}
+
+.progressBar progress {
+  height: 100%;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+   border: none;
+  border-radius: 5px;
+}
+
+.progressBar progress::-webkit-progress-value {
+  background-color: #88249C;
+  border-radius: 5px;
+  transition-duration: 2s;
+  
+}
+
+.progressBar progress::-webkit-progress-bar {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
