@@ -4,26 +4,32 @@ import "../header/header.scss"
 
 import { HooksClick } from '../../components/hooks/hooks'
 
+import ansQue from "../arr.json";
+import Done from "/Projects/reactProjects/questions_react/src/assets/img/wing.png"
+
+
 
 function Header (){
 
-  const [activeStep, setActiveStep, progress, setProgress, steps, currentIndex, setCurrentIndex, buttonClicks, setButtonClicks, progData] =  React.useContext(HooksClick)
+  const [activeStep, setActiveStep, progress, setProgress, steps] =  React.useContext(HooksClick)
 
-  
+  const [activeCirlce, setactiveCirlce] = useState(0)
+  const {id, text, que} = ansQue[activeCirlce];
 
-  const currentProgData = progData[currentIndex];
-  const progClass = `prog${buttonClicks}`;
 
   return (
     <div className="stepper-container">
      
      <div className="progressContainer">
-     <div className={progClass}>
-         
-          {currentProgData.circles.map((circle, index) => (
-            <div key={index} className="circle">{circle.status}</div>
+     { activeStep !== steps.length 
+          &&  (
+      <div className="progressMain">
+      {ansQue.map((_,index) => (
+            <div key={index} className={`circle ${activeStep > index ? 'active' : ''}`}>
+              {activeStep > index && <img width="15" src={Done}  />}
+            </div>
           ))}
-      </div>
+      </div>)}
       </div>
         
         { activeStep !== steps.length 

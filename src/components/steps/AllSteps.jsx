@@ -15,20 +15,16 @@ function AllSteps () {
     setAllButtonsClicked(false);
     
     setTimeout(() => {
-      if (currentIndex < progData.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setButtonClicks(buttonClicks + 1);
-    }
       if (activeQuestion === ansQue.length - 1) {
-      setAllButtonsClicked(true);}
+      setAllButtonsClicked(true);
+    }
       else{setActiveQuestion((prev) => prev + 1)}
       setActiveStep(activeStep + 1);
       setProgress((activeStep + 1) / steps.length * 100 
-      
       );}, 500)
-    
 
 }
+
   return (
 
     <Fragment>
@@ -48,6 +44,7 @@ function AllSteps () {
           ))}
 
         </div>
+        
       </>
     )}
   </Fragment>

@@ -1,20 +1,58 @@
 .progressContainer{
   width: 100%;
-  background-color: #f0f0f0;
+  height: 18px;
+  position: relative; 
+  background: #f0f0f0;
+  border: 8ps;
   border-radius: 15px;
-  .prog1{
-  width: 20%;
-  background-color: #88249C;
-  display: flex;
+  transition-duration: 2s;
   justify-content: space-between;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  &:before{
+   content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #5558fa;
+    height: 15px;
+    border-radius: 8px;
+    z-index: 5;
+  }
+  .progressMain{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+  .circle{
+  width: 25px;
+  background-color: #f0f0f0;
+  border: 5px solid rgb(170, 179, 120);
+  height: 25px;
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+  font-size: 19px;
+  justify-content: center;
+  
+  }
 }
+
+.circle.active{
+  background-color: rgb(204, 196, 226);
+  
+  
+}
+
 .prog2{
   width: 40%;
   background-color: #88249C;
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
+  transition-duration: 2s;
 }
 .prog3{
   width: 60%;
@@ -22,6 +60,7 @@
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
+  transition-duration: 2s;
 }
 .prog4{
   width: 80%;
@@ -29,6 +68,7 @@
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
+  transition-duration: 2s;
 }
 .prog5{
   width: 100%;
@@ -36,6 +76,7 @@
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
+  transition-duration: 2s;
 }
 .prog6{
   width: 100%;
@@ -43,18 +84,14 @@
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
+  transition-duration: 2s;
 }
-.circle{
-  width: 30px;
-  background-color: green;
-  height: 30px;
-  border-radius: 50px;
-  text-align: center;
-  color: white;
-  font-size: 19px;
-  justify-content: center;
+
 }
-}
+
+
+
+
 
 .progressBar {
   height: 20px;

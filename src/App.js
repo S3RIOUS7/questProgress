@@ -8,6 +8,7 @@ import React, { useState } from "react";
 function App() {
 
   const [ activeStep, setActiveStep ] = useState(0);
+  
   const [progress, setProgress] = useState(0);
 
   const steps = [
@@ -22,25 +23,11 @@ function App() {
     
   ];
 
-  const progData = [
-    { prog: 0, circles: [{ status: "+" }] },
-    { prog: 20, circles: [{ status: "✔" }, { status: "+" }] },
-    { prog: 40, circles: [{ status: "✔" }, { status: "✔" }, { status: "+" }] },
-    { prog: 60, circles: [{ status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "+" }] },
-    { prog: 80, circles: [{ status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "+" }] },
-    { prog: 100, circles: [{ status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "✔" }, { status: "✔" }] }
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [buttonClicks, setButtonClicks] = useState(0);
-
-  
-  const currentProgData = progData[currentIndex];
-  const progClass = `prog${buttonClicks}`;
+ 
  
   
   return (
-    <HooksClick.Provider value={ [activeStep, setActiveStep, progress, setProgress, steps, currentIndex, setCurrentIndex, buttonClicks, setButtonClicks, progData ] }>
+    <HooksClick.Provider value={ [activeStep, setActiveStep, progress, setProgress, steps ] }>
       <div className='container'>
         <Header/>
         <Main />
