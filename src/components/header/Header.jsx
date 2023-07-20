@@ -20,17 +20,28 @@ function Header (){
   return (
     <div className="stepper-container">
      
-     <div className="progressContainer">
-     { activeStep !== steps.length 
-          &&  (
+<div className="progressContainer">
+    
       <div className="progressMain">
       {ansQue.map((_,index) => (
-            <div key={index} className={`circle ${activeStep > index ? 'active' : ''}`}>
-              {activeStep > index && <img width="15" src={Done}  />}
+            <div key={index}>
+           
+        {index !== 0 && (
+    <div className={`line ${index < activeStep ? "filled" : ""} `}></div>)}
+
+     <div className={`circle ${index === activeStep - 1 ? "current" : ""} ${index < activeStep - 1 ? "done" : ""}`}> {index + 1}</div>
+
+    <div className={`step ${index < activeStep ? "done" : ""}`}>
+      
+    </div>
+ 
             </div>
           ))}
-      </div>)}
+
+
       </div>
+
+</div>
         
         { activeStep !== steps.length 
           &&  (
@@ -38,7 +49,6 @@ function Header (){
           <progress value={progress} max="80"/>
           </div>
            )}
-
 
     </div>
   );
