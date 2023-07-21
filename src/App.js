@@ -9,7 +9,7 @@ function App() {
 
   const [ activeStep, setActiveStep ] = useState(0);
   
-  const [progress, setProgress] = useState(0);
+
 
   const steps = [
     
@@ -27,7 +27,7 @@ function App() {
  
   
   return (
-    <HooksClick.Provider value={ [activeStep, setActiveStep, progress, setProgress, steps ] }>
+    <HooksClick.Provider value={ [activeStep, setActiveStep, steps ] }>
       <div className='container'>
         <Header/>
         <Main />

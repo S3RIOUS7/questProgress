@@ -6,7 +6,7 @@ import  "./allSteps.scss";
 import { HooksClick } from '../../components/hooks/hooks'
 
 function AllSteps () {
-  const [activeStep, setActiveStep, progress, setProgress, steps, currentIndex, setCurrentIndex, buttonClicks, setButtonClicks, progData] =  React.useContext(HooksClick)
+  const [activeStep, setActiveStep, steps, currentIndex, setCurrentIndex, buttonClicks, setButtonClicks, progData] =  React.useContext(HooksClick)
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [allButtonsClicked, setAllButtonsClicked] = useState(false);
   const { que, text } = ansQue[activeQuestion];
@@ -20,8 +20,7 @@ function AllSteps () {
     }
       else{setActiveQuestion((prev) => prev + 1)}
       setActiveStep(activeStep + 1);
-      setProgress((activeStep + 1) / steps.length * 100 
-      );}, 500)
+     }, 500)
 
 }
 
