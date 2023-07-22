@@ -10,28 +10,14 @@ function App() {
   const [ activeStep, setActiveStep ] = useState(0);
   
 
-
-  const steps = [
-    
-    { label: 'que1' },
-    { label: 'que2' },
-    { label: 'que3'},
-    { label: 'que4' },
-    { label: 'que5' },
-    { label: 'que6' },
-    
-    
-  ];
-
- 
- 
   
   return (
-    <HooksClick.Provider value={ [activeStep, setActiveStep, steps ] }>
-      <div className='container'>
+    <HooksClick.Provider value={ [activeStep, setActiveStep] }>
+        <div className='container'>
         <Header/>
         <Main />
-      </div>
+        </div>
+     
     </HooksClick.Provider>
     )
 

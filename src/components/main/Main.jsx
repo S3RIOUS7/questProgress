@@ -5,9 +5,9 @@ function Main () {
   
    
   return (
-    <div className="container">
+   
      <AllSteps />
-    </div>
+    
   );
 
 }

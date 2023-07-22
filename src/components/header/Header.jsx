@@ -7,8 +7,7 @@ import ansQue from "../arr.json";
 
 
 function Header() {
-  const [activeStep, setActiveStep, steps] =
-    React.useContext(HooksClick);
+  const [activeStep, setActiveStep] = React.useContext(HooksClick);
 
   const [activeCirlce, setactiveCirlce] = useState(0);
   const { id, text, que } = ansQue[activeCirlce];
