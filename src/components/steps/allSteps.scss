@@ -40,6 +40,7 @@
   justify-content: center;
   margin: auto;
   padding-bottom: 30px;
+  
   button{
     font-size: 24px;
     background-color: white;
@@ -56,6 +57,25 @@
     font-size: 20px;
     padding-bottom: 5px;
     
+  }
+}
+.startButton{
+  display: flex; 
+  
+  flex-direction: column;
+  max-width: 400px;
+  justify-content: center;
+  margin: auto;
+  padding-bottom: 30px;
+  button{
+    font-size: 24px;
+    margin-top: 100px;
+    background-color: white;
+    color: #88249C;
+    border: #80AC87 1px solid;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 20px;
   }
 }
 .questionsAnswers{

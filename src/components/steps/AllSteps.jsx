@@ -15,31 +15,69 @@ function AllSteps () {
   const { que, text } = ansQue[activeQuestion];
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
+  const [buttonClicked, setButtonClicked] = useState(false);
+  
   const handleRadioChange = (event) => {
-    setSelectedAnswer(event.target.value);
-  };
-
-  const onClickNext = () => {
+    const selectedValue = event.target.value;
+    setSelectedAnswer(selectedValue);
+   
     setAllButtonsClicked(false);
-    
     setTimeout(() => {
-      setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedAnswer }]);
-
+      setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedValue }]);
       if (activeQuestion === ansQue.length - 1) {
-      setAllButtonsClicked(true);
-    }
-      else{
-        setActiveQuestion((prev) => prev + 1)
+        setAllButtonsClicked(true);
+      } else {
+        setActiveQuestion((prev) => prev + 1);
         setSelectedAnswer(null);
       }
       setActiveStep(activeStep + 1);
-     }, 500)
-}
+    }, 500);
+  };
+
+//   const onClickNext = () => {
+//     setAllButtonsClicked(false);
+    
+//     setTimeout(() => {
+//       setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedAnswer }]);
+
+//       if (activeQuestion === ansQue.length - 1) {
+//       setAllButtonsClicked(true);   Логока по нажатаию на кнопку
+//     }
+//       else{
+//         setActiveQuestion((prev) => prev + 1)
+//         setSelectedAnswer(null);
+//       }
+//       setActiveStep(activeStep + 1);
+//      }, 500)
+// }
+const onClickStart = () => {
+      setButtonClicked(true);
+      setAllButtonsClicked(false);
+      
+      setTimeout(() => {
+        setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedAnswer }]);
+  
+        if (activeQuestion === ansQue.length - 1) {
+        setAllButtonsClicked(true);   
+      }
+        else{
+          setActiveQuestion((prev) => prev + 1)
+          setSelectedAnswer(null);
+        }
+        setActiveStep(activeStep + 1);
+       }, 500)
+  }
 
 const reloadPage = () => {
-  window.location.reload()
+  setTimeout(() => {
+  setActiveStep(0);
+  setActiveQuestion(0);
+  setAllAnswersQuestions([]);
+  setSelectedAnswer(null);
+  setAllButtonsClicked(false)
+  setButtonClicked(false);
+  }, 500)
 }
-
 
   return (
 
@@ -49,7 +87,7 @@ const reloadPage = () => {
        <div className="wellDone">
        Ты молодец!
        <div>
-         {allAnswersQuestions.map((selected, index) => (
+         {allAnswersQuestions.slice(1).map((selected, index) => (
            <div key={index} className="questionsAnswers">
              <h3>{selected.question}</h3>
              <p>Ответ: {selected.text}</p>
@@ -61,29 +99,35 @@ const reloadPage = () => {
      </div>
    ) : (
       <>
-        <h2 className="questions">{que}</h2>
+       {!buttonClicked && (
+            <div className="startButton">
+              <button onClick={() => onClickStart()}>{que}</button>
+            </div>
+          )}
+        <h2 className="questions">{activeQuestion > 0 ? que : null}</h2>
         
         <div className="answers">
           {text.map((item) => (
             <label key={item.id}>
-            <Input
-              type="radio"
-              name="answer"
-              value={item}
-              checked={selectedAnswer === item}
-              onChange={handleRadioChange}
-            />
-            {item}
+             {activeQuestion > 0 ? ( 
+        <Input
+          type="radio"
+          name="answer"
+          value={item}
+          checked={selectedAnswer === item}
+          onChange={handleRadioChange}
+        />
+      ) : (
+        <div>{item}</div> 
+      )}
+      {item}
           </label>
           ))}
         </div>
-        <div className="answers"><button onClick={() => onClickNext()}>Далее</button></div>
-        
+       
       </>
 
     )}
-
-   
 
   </Fragment>
 );

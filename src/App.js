@@ -8,8 +8,9 @@ import React, { useState } from "react";
 function App() {
 
   const [ activeStep, setActiveStep ] = useState(0);
-  
 
+ 
+ 
   
   return (
     <HooksClick.Provider value={ [activeStep, setActiveStep] }>
@@ -17,7 +18,7 @@ function App() {
         <Header/>
         <Main />
         </div>
-     
+        
     </HooksClick.Provider>
     )
 
