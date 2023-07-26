@@ -18,19 +18,19 @@ function AllSteps () {
   const [buttonClicked, setButtonClicked] = useState(false);
   
   const handleRadioChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedAnswer(selectedValue);
+    const selectedValue = event.target.value;// event.target.value показывает то что выбрал
+    setSelectedAnswer(selectedValue)// записывает в переменную
    
     setAllButtonsClicked(false);
     setTimeout(() => {
-      setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedValue }]);
+      setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedValue }]);//allAnswersQuestions обновляет переменную, добавляя в массив вопросы и ответы
       if (activeQuestion === ansQue.length - 1) {
-        setAllButtonsClicked(true);
+        setAllButtonsClicked(true); //последний вопрос
       } else {
         setActiveQuestion((prev) => prev + 1);
-        setSelectedAnswer(null);
-      }
-      setActiveStep(activeStep + 1);
+        setSelectedAnswer(null);//сброс переменной чтоб можно было выбрать ответы на вопрос
+      }// if else проверяет activeQuestion последний ли элемент
+      setActiveStep(activeStep + 1);// переменная следит за состояние прогрессбара
     }, 500);
   };
 
@@ -72,7 +72,7 @@ const reloadPage = () => {
   setTimeout(() => {
   setActiveStep(0);
   setActiveQuestion(0);
-  setAllAnswersQuestions([]);
+  setAllAnswersQuestions([]);// обновляю все стейты до первоночальных
   setSelectedAnswer(null);
   setAllButtonsClicked(false)
   setButtonClicked(false);
@@ -87,7 +87,7 @@ const reloadPage = () => {
        <div className="wellDone">
        Ты молодец!
        <div>
-         {allAnswersQuestions.slice(1).map((selected, index) => (
+         {allAnswersQuestions.slice(1).map((selected, index) => ( //метод slice исключает 1й элемент
            <div key={index} className="questionsAnswers">
              <h3>{selected.question}</h3>
              <p>Ответ: {selected.text}</p>
@@ -124,9 +124,7 @@ const reloadPage = () => {
           </label>
           ))}
         </div>
-       
       </>
-
     )}
 
   </Fragment>
