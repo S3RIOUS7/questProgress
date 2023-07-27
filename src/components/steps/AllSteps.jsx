@@ -16,6 +16,9 @@ function AllSteps () {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const [buttonClicked, setButtonClicked] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  
   
   const handleRadioChange = (event) => {
     const selectedValue = event.target.value;// event.target.value показывает то что выбрал
@@ -26,6 +29,7 @@ function AllSteps () {
       setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedValue }]);//allAnswersQuestions обновляет переменную, добавляя в массив вопросы и ответы
       if (activeQuestion === ansQue.length - 1) {
         setAllButtonsClicked(true); //последний вопрос
+        setModalVisible(true);
       } else {
         setActiveQuestion((prev) => prev + 1);
         setSelectedAnswer(null);//сброс переменной чтоб можно было выбрать ответы на вопрос
@@ -34,31 +38,13 @@ function AllSteps () {
     }, 500);
   };
 
-//   const onClickNext = () => {
-//     setAllButtonsClicked(false);
-    
-//     setTimeout(() => {
-//       setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedAnswer }]);
-
-//       if (activeQuestion === ansQue.length - 1) {
-//       setAllButtonsClicked(true);   Логока по нажатаию на кнопку
-//     }
-//       else{
-//         setActiveQuestion((prev) => prev + 1)
-//         setSelectedAnswer(null);
-//       }
-//       setActiveStep(activeStep + 1);
-//      }, 500)
-// }
 const onClickStart = () => {
-      setButtonClicked(true);
-      setAllButtonsClicked(false);
-      
-      setTimeout(() => {
-        setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedAnswer }]);
-  
+   setButtonClicked(true);
+   setAllButtonsClicked(false);
+   setTimeout(() => {
         if (activeQuestion === ansQue.length - 1) {
         setAllButtonsClicked(true);   
+       
       }
         else{
           setActiveQuestion((prev) => prev + 1)
@@ -83,21 +69,28 @@ const reloadPage = () => {
 
     <Fragment>
 
-    {allButtonsClicked ? (
-       <div className="wellDone">
-       Ты молодец!
-       <div>
-         {allAnswersQuestions.slice(1).map((selected, index) => ( //метод slice исключает 1й элемент
-           <div key={index} className="questionsAnswers">
-             <h3>{selected.question}</h3>
-             <p>Ответ: {selected.text}</p>
-            
-           </div>
-         ))}
-       </div>
-        <button onClick={() => reloadPage()}>Начни заново</button>
-     </div>
-   ) : (
+{allButtonsClicked ? (
+      <>
+        {modalVisible && (
+          <div className="modalOverlay">
+            <div className="modalContent">
+              <h3>Ты молодец!</h3>
+              <div>
+                <div className="circleCompleteGreen"></div>
+                {/* {allAnswersQuestions.slice(1).map((selected, index) => (
+                  <div key={index} className="questionsAnswers">
+                    <h3>{selected.question}</h3>
+                    <p>Ответ: {selected.text}</p>
+                  </div>
+                ))} */}
+              </div>
+              <button onClick={() => reloadPage()}>Начни заново</button>
+              <button onClick={() => reloadPage()}>Получить результаты</button>
+            </div>
+          </div>
+        )}
+      </>
+    ) : (
       <>
        {!buttonClicked && (
             <div className="startButton">
@@ -124,6 +117,7 @@ const reloadPage = () => {
           </label>
           ))}
         </div>
+       
       </>
     )}
 

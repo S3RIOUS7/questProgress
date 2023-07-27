@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import "../header/header.scss";
 
 import { HooksClick } from "../../components/hooks/hooks";
-
+import Modal from 'react-modal'
 import ansQue from "../arr.json";
 
 
@@ -12,8 +12,11 @@ function Header() {
   const [activeCirlce, setactiveCirlce] = useState(0);
   const { id, text, que } = ansQue[activeCirlce];
 
+  
   return (
     <div className="stepper-container">
+     
+      
       <div className="progressMain">
         {ansQue.map((_, index) => (
           <Fragment key={index}>
