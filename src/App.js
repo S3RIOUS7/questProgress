@@ -1,7 +1,7 @@
 
 import './App.css';
-import Header from './components/header/Header'
-import Main from'./components/main/Main'
+import Answers from './components/pages/answerFinal/Answers';
+import Main from'./components/pages/main/Main'
 import { HooksClick } from './components/hooks/hooks.js'
 import React, { useState } from "react";
 
@@ -15,8 +15,8 @@ function App() {
   return (
     <HooksClick.Provider value={ [activeStep, setActiveStep] }>
         <div className='container'>
-        <Header/>
         <Main />
+        <Answers />
         </div>
         
     </HooksClick.Provider>

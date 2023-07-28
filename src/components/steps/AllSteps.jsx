@@ -88,7 +88,7 @@ const reloadPage = () => {
               <button onClick={() => reloadPage()}>Получить результаты</button>
             </div>
           </div>
-        )}
+        )} 
       </>
     ) : (
       <>
