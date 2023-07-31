@@ -6,17 +6,12 @@ import  "./allSteps.scss";
 import { HooksClick } from '../../components/hooks/hooks'
 import Input from '../input/Input'
 
+import  {Link} from "react-router-dom";
 function AllSteps () {
-  const [activeStep, setActiveStep] =  React.useContext(HooksClick)
-  const [activeQuestion, setActiveQuestion] = useState(0)
-  const [allAnswersQuestions, setAllAnswersQuestions] = useState([]);
-  
-  const [allButtonsClicked, setAllButtonsClicked] = useState(false);
+  const [activeStep, setActiveStep, activeQuestion, setActiveQuestion, allAnswersQuestions, setAllAnswersQuestions, selectedAnswer, setSelectedAnswer,allButtonsClicked, setAllButtonsClicked, buttonClicked, setButtonClicked] =  React.useContext(HooksClick)
+
   const { que, text } = ansQue[activeQuestion];
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-
-  const [buttonClicked, setButtonClicked] = useState(false);
-
+  
   const [modalVisible, setModalVisible] = useState(false);
   
   
@@ -75,17 +70,12 @@ const reloadPage = () => {
           <div className="modalOverlay">
             <div className="modalContent">
               <h3>Ты молодец!</h3>
-              <div>
+              <div className="circleAnimaited">
                 <div className="circleCompleteGreen"></div>
-                {/* {allAnswersQuestions.slice(1).map((selected, index) => (
-                  <div key={index} className="questionsAnswers">
-                    <h3>{selected.question}</h3>
-                    <p>Ответ: {selected.text}</p>
-                  </div>
-                ))} */}
+               
               </div>
               <button onClick={() => reloadPage()}>Начни заново</button>
-              <button onClick={() => reloadPage()}>Получить результаты</button>
+             <Link to="/Answers"> <button>Получить результаты</button></Link>
             </div>
           </div>
         )} 
