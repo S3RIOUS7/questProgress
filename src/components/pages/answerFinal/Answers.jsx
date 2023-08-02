@@ -6,22 +6,14 @@ import { HooksClick } from "../../hooks/hooks"
 import  {Link} from "react-router-dom";
 
 
-function Answers (){
+function Answers ( { goToMainPage, activeQuestion, allAnswersQuestions, setAllAnswersQuestions }){
 
-  const [activeStep, setActiveStep, activeQuestion, setActiveQuestion, allAnswersQuestions, setAllAnswersQuestions, selectedAnswer, setSelectedAnswer,allButtonsClicked, setAllButtonsClicked, buttonClicked, setButtonClicked] =  React.useContext(HooksClick)
+  
   const { que, text } = ansQue[activeQuestion];
   const allAnswerGoal = () => {
   setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: text }]);
   }
-  const goToMainPage = () => {
-    setActiveStep(0);
-    setActiveQuestion(0);
-    setAllAnswersQuestions([]);// обновляю все стейты до первоночальных
-    setSelectedAnswer(null);
-    setAllButtonsClicked(false)
-    setButtonClicked(false);
-  }
-
+  
   
   return(
      <Fragment >

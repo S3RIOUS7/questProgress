@@ -2,12 +2,14 @@ import React, { Fragment, useState } from "react";
 import "../header/header.scss";
 
 import { HooksClick } from "../../components/hooks/hooks";
-import Modal from 'react-modal'
+
 import ansQue from "../arr.json";
 
 
-function Header() {
-  const [activeStep, setActiveStep] = React.useContext(HooksClick);
+function Header( props ) {
+
+  const {activeStep, setActiveStep} = props;
+ 
 
   const [activeCirlce, setactiveCirlce] = useState(0);
   const { id, text, que } = ansQue[activeCirlce];

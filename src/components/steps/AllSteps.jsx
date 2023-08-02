@@ -3,12 +3,13 @@ import ansQue from "../arr.json";
 import React from "react";
 import { Fragment, useState } from "react";
 import  "./allSteps.scss";
-import { HooksClick } from '../../components/hooks/hooks'
+
 import Input from '../input/Input'
 
 import  {Link} from "react-router-dom";
-function AllSteps () {
-  const [activeStep, setActiveStep, activeQuestion, setActiveQuestion, allAnswersQuestions, setAllAnswersQuestions, selectedAnswer, setSelectedAnswer,allButtonsClicked, setAllButtonsClicked, buttonClicked, setButtonClicked] =  React.useContext(HooksClick)
+function AllSteps (props) {
+  const { goToMainPage, activeStep, setActiveStep, activeQuestion, setActiveQuestion,  setAllAnswersQuestions, selectedAnswer, setSelectedAnswer, allButtonsClicked, setAllButtonsClicked, buttonClicked, setButtonClicked } = props;
+  
 
   const { que, text } = ansQue[activeQuestion];
   
@@ -18,7 +19,6 @@ function AllSteps () {
   const handleRadioChange = (event) => {
     const selectedValue = event.target.value;// event.target.value показывает то что выбрал
     setSelectedAnswer(selectedValue)// записывает в переменную
-   
     setAllButtonsClicked(false);
     setTimeout(() => {
       setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: selectedValue }]);//allAnswersQuestions обновляет переменную, добавляя в массив вопросы и ответы
@@ -35,14 +35,13 @@ function AllSteps () {
 
 const onClickStart = () => {
    setButtonClicked(true);
-   setAllButtonsClicked(false);
+ 
    setTimeout(() => {
         if (activeQuestion === ansQue.length - 1) {
         setAllButtonsClicked(true);   
-       
       }
         else{
-          setActiveQuestion((prev) => prev + 1)
+           setActiveQuestion((prev) => prev + 1)
           setSelectedAnswer(null);
         }
         setActiveStep(activeStep + 1);
@@ -50,14 +49,7 @@ const onClickStart = () => {
   }
 
 const reloadPage = () => {
-  setTimeout(() => {
-  setActiveStep(0);
-  setActiveQuestion(0);
-  setAllAnswersQuestions([]);// обновляю все стейты до первоночальных
-  setSelectedAnswer(null);
-  setAllButtonsClicked(false)
-  setButtonClicked(false);
-  }, 500)
+  goToMainPage()
 }
 
   return (
@@ -65,23 +57,22 @@ const reloadPage = () => {
     <Fragment>
 
 {allButtonsClicked ? (
-      <>
+      <Fragment>
         {modalVisible && (
           <div className="modalOverlay">
             <div className="modalContent">
               <h3>Ты молодец!</h3>
               <div className="circleAnimaited">
-                <div className="circleCompleteGreen"></div>
-               
+                <div className="circleCompleteGreen"/>
               </div>
               <button onClick={() => reloadPage()}>Начни заново</button>
-             <Link to="/Answers"> <button>Получить результаты</button></Link>
+             <Link to="/Answers"  style={{ textDecoration: 'none' }}> <button>Получить результаты</button></Link>
             </div>
           </div>
         )} 
-      </>
+      </Fragment>
     ) : (
-      <>
+      <Fragment>
        {!buttonClicked && (
             <div className="startButton">
               <button onClick={() => onClickStart()}>{que}</button>
@@ -108,7 +99,7 @@ const reloadPage = () => {
           ))}
         </div>
        
-      </>
+      </Fragment>
     )}
 
   </Fragment>
