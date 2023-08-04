@@ -6,13 +6,12 @@ import { HooksClick } from "../../components/hooks/hooks";
 import ansQue from "../arr.json";
 
 
-function Header( props ) {
+function Header(  ) {
 
-  const {activeStep, setActiveStep} = props;
+  const {activeStep, setActiveStep} =  React.useContext(HooksClick);
  
 
-  const [activeCirlce, setactiveCirlce] = useState(0);
-  const { id, text, que } = ansQue[activeCirlce];
+  
 
   
   return (

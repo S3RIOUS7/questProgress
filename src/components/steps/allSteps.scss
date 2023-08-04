@@ -132,11 +132,20 @@ margin-top: 30px;
   width: 40px;
   height: 40px;
   background-image: url('../../../src/assets/img/Vector.svg');
+  outline: 17px solid transparent; 
+  border-radius: 50%;
+  animation-name: showCircle; 
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
-&:hover .circleCompleteGreen{
-  outline: 17px solid rgb(176, 250, 219);
-  transition-duration: 0.3s;
-  border-radius: 50%;
+@keyframes showCircle {
+  0% {
+    outline: 0px solid transparent; 
+  }
+  100% {
+    outline: 17px solid rgb(176, 250, 219);
+  }
 }
 }
+
