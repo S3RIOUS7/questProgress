@@ -10,9 +10,6 @@ function App() {
 
   const [ activeStep, setActiveStep ] = useState(0);
  
-
-
-  
   
   return (
     <HooksClick.Provider value={ activeStep, setActiveStep }>

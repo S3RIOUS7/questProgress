@@ -9,7 +9,7 @@ function Step(){
 
   const activeQuestion = ansQue[step];
 
-  const handleInputChange = (questionId, answer) => {
+  const сhangeInput = (questionId, answer) => {
     setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
     setStep((prevStep) => prevStep + 1);
   };
@@ -28,7 +28,7 @@ function Step(){
               {answer}
               <Input
                 value={answer}
-                onChange={() => handleInputChange()}
+                onChange={() => сhangeInput()}
                 type="radio"
                 checked={answers[activeQuestion.id] === answer}
               />
