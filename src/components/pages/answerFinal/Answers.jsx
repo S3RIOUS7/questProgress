@@ -3,27 +3,29 @@ import ansQue from "../../arr.json";
 import {  Fragment} from "react";
 import React from "react";
 import { HooksClick } from "../../hooks/hooks"
-import  {Link} from "react-router-dom";
+import  { useNavigate} from "react-router-dom";
 
 
-function Answers ( { goToMainPage, activeQuestion, allAnswersQuestions, setAllAnswersQuestions }){
+function Answers (){
 
-  
-  const { que, text } = ansQue[activeQuestion];
-  const allAnswerGoal = () => {
-  setAllAnswersQuestions((prevAnswers) => [...prevAnswers, { question: que, text: text }]);
+  const { activeStep, setActiveStep, answers, setAnswers } =  React.useContext(HooksClick);
+  const navigate = useNavigate();
+  const goToMain = () =>{
+    navigate('/')
+    setActiveStep(0)
+    setAnswers({})
   }
-  
-  
+
   return(
      <Fragment >
-      {allAnswersQuestions.slice(1).map((selected, index) => (
-         <div key={index} className="questionsAnswers">
-           <h3>{selected.question}</h3>
-           <p>Ответ: {selected.text}</p>
-         </div>
-        ))}
-      <Link to="/"><button onClick={() => goToMainPage()}> Вернуться в начало пути </button> </Link>
+      <h2>Результаты</h2>
+      {ansQue.map((question) => (
+        <div key={question.id}>
+          <h3> Вопрос: {question.que}</h3>
+          <p>Ответ: {answers[question.id]}</p>
+        </div>
+      ))}
+      <button onClick={() => goToMain()}>Вернуться</button>
   </Fragment>
 
   )

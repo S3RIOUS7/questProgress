@@ -9,10 +9,10 @@ import  {Route, Routes, Link} from "react-router-dom";
 function App() {
 
   const [ activeStep, setActiveStep ] = useState(0);
- 
+  const [answers, setAnswers] = useState({});
   
   return (
-    <HooksClick.Provider value={ activeStep, setActiveStep }>
+    <HooksClick.Provider value={{ activeStep, setActiveStep, answers, setAnswers }}>
        <div className='container'>
        <Routes>
        <Route path ='/' element ={ <Main  /> }/> 
