@@ -1,23 +1,25 @@
-import "../answerFinal/answers.scss"
+
 import ansQue from "../../arr.json";
-import {  Fragment} from "react";
+import '../answerFinal/answers.scss'
 import React from "react";
 import { HooksClick } from "../../hooks/hooks"
 import  { useNavigate} from "react-router-dom";
+import Button from "../../button/Button";
 
 
 function Answers (){
 
-  const { activeStep, setActiveStep, answers, setAnswers } =  React.useContext(HooksClick);
+  const {  setActiveStep, answers, setAnswers } =  React.useContext(HooksClick);
   const navigate = useNavigate();
   const goToMain = () =>{
     navigate('/')
     setActiveStep(0)
-    setAnswers({})
+    setAnswers([])
   }
 
   return(
-     <Fragment >
+     <div className="answers-container" >
+       
       <h2>Результаты</h2>
       {ansQue.map((question) => (
         <div key={question.id}>
@@ -25,8 +27,8 @@ function Answers (){
           <p>Ответ: {answers[question.id]}</p>
         </div>
       ))}
-      <button onClick={() => goToMain()}>Вернуться</button>
-  </Fragment>
+      <Button onClick={goToMain}>Вернуться</Button>
+  </div>
 
   )
  

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "../header/header.scss";
 
 import { HooksClick } from "../../components/hooks/hooks";
@@ -8,7 +8,7 @@ import ansQue from "../arr.json";
 
 function Header(  ) {
 
-  const {activeStep, setActiveStep} =  React.useContext(HooksClick);
+  const {activeStep} =  React.useContext(HooksClick);
  
   return (
     <div className="stepper-container">

@@ -1,0 +1,13 @@
+.step-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+
+  p{
+    font-size: 20px;
+    min-width:150px;
+    margin: 0;
+    justify-content: center;
+    text-align: left;
+  }
+}

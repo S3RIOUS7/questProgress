@@ -3,48 +3,44 @@ import ansQue from '../arr.json'
 import Input from '../input/Input'
 import { Fragment, useState } from "react";
 import {HooksClick} from '../hooks/hooks'
-import ModalWindow from "../modalWindow/ModalWindow";
+import '../step/step.scss'
 
-function Step(){
-  const {activeStep, setActiveStep, answers, setAnswers } =  React.useContext(HooksClick);
- 
- 
-  const activeQuestion = ansQue[activeStep];
 
-  const changeInput = (questionId, answer) => {
-    setAnswers((prevAnswers) =>  ({ ...prevAnswers, [questionId]: answer }) );
-     setActiveStep((prevStep) => prevStep + 1);
+const Step = ( {item} ) => {
+  const {activeStep, setActiveStep,  setAnswers, setActiveModal} =  React.useContext(HooksClick);
+
+  const [first, setFirst] = useState(null)
+
+  const changeInput = (event) => {
+    const answer = event.target.value
+   
+    setTimeout(() => setActiveStep((prevStep) => prevStep + 1), 300);
+    setAnswers((prevAnswers) =>  [ ...prevAnswers, answer ] );
+  
+     setFirst(answer)
+     
+  if (activeStep + 1 === ansQue.length ){
+    setActiveModal(true)
+  }
   };
- 
 
-console.log(activeStep)
   return (
-    <Fragment>
 
-      {activeStep  < ansQue.length  ? (
         <Fragment>
-          <h2>{activeQuestion.que}</h2>
-          {activeQuestion.text.map((answer, index) => (
-            <label key={index}>
-              {answer}
-              <Input
+          <h2>{item.que}</h2>
+          {item.text.map((answer, index) => (
+            <label className="step-container"  key={index}>
+              <p>{answer}</p>
+              <Input 
                 value={answer}
-                onChange={() => changeInput(activeQuestion.id, answer)}
+                onChange={ changeInput}
                 type="radio"
-                checked={answers[activeQuestion.id] === answer}
+                checked={first === answer}
               />
             </label>
           ))}
-         
         </Fragment>
-      ) : (
-       <>
-          <ModalWindow />
-          </>
-          )}
-        
-      
-    </Fragment>
+
   );
 };
 export default Step;

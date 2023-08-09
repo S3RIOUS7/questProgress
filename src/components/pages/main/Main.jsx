@@ -1,5 +1,5 @@
 
-import AllSteps from "../../steps/AllSteps";
+import AllSteps from "../../allSteps/AllSteps";
 import Header from "../../header/Header";
 import { Fragment } from "react";
 
